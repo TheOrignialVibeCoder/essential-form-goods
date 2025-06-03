@@ -1,0 +1,172 @@
+:root {
+    --color-soft-white: #F9F9F9;
+    --color-light-grey: #E0E0E0;
+    --color-mid-grey: #A0A0A0;
+    --color-deep-charcoal: #333333;
+    --color-muted-forest: #6A7B5A; 
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--color-soft-white);
+    color: var(--color-deep-charcoal);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.font-logo {
+    font-family: 'Work Sans', sans-serif;
+}
+
+.font-heading {
+    font-family: 'Work Sans', sans-serif;
+}
+
+.font-body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.bg-soft-white { background-color: var(--color-soft-white); }
+.bg-light-grey { background-color: var(--color-light-grey); }
+.bg-mid-grey { background-color: var(--color-mid-grey); }
+.bg-deep-charcoal { background-color: var(--color-deep-charcoal); }
+.bg-muted-forest { background-color: var(--color-muted-forest); }
+
+.text-soft-white { color: var(--color-soft-white); }
+.text-light-grey { color: var(--color-light-grey); }
+.text-mid-grey { color: var(--color-mid-grey); }
+.text-deep-charcoal { color: var(--color-deep-charcoal); }
+.text-muted-forest { color: var(--color-muted-forest); }
+
+.border-light-grey { border-color: var(--color-light-grey); }
+.border-mid-grey { border-color: var(--color-mid-grey); }
+
+.nav-link {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.95rem; /* 15px */
+    font-weight: 500; /* Medium */
+    color: var(--color-deep-charcoal);
+    padding: 0.5rem 0; /* Vertical padding for larger click area, no horizontal */
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-muted-forest);
+    transition: width 0.3s ease-in-out;
+}
+
+.nav-link:hover::after,
+.group:hover .nav-link::after { /* For dropdown button */
+    width: 100%;
+}
+.nav-link:hover, .group:hover .nav-link {
+    color: var(--color-muted-forest);
+}
+
+
+/* Footer link specific styling for Muji feel */
+.footer-link {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.875rem; /* 14px */
+    color: var(--color-light-grey);
+    opacity: 0.7;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.footer-link:hover {
+    opacity: 1;
+    color: var(--color-soft-white);
+}
+
+/* Custom aspect ratio for Tailwind if not available by default */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .aspect-w-4 {
+    position: relative;
+    padding-bottom: calc(var(--tw-aspect-h) / var(--tw-aspect-w) * 100%);
+  }
+  .aspect-w-4 > * {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  .aspect-h-3 { --tw-aspect-h: 3; }
+  .aspect-w-4 { --tw-aspect-w: 4; }
+}
+
+/* Hide scrollbar for a cleaner look but retain functionality */
+/* For Webkit browsers */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--color-soft-white);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--color-light-grey);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-mid-grey);
+}
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-light-grey) var(--color-soft-white);
+}
+
+/* Ensure Lucide icons inherit color correctly */
+[data-lucide] {
+    color: inherit;
+}
+
+/* Ensure collections dropdown icon rotates */
+#collections-mobile-button.open > i[data-lucide="chevron-down"] {
+    transform: rotate(180deg);
+    transition: transform 0.2s ease-in-out;
+}
+#collections-mobile-button > i[data-lucide="chevron-down"] {
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Cart specific styles */
+.cart-badge {
+    position: absolute;
+    top: -0.25rem; /* -top-1 */
+    right: -0.5rem; /* -right-2 */
+    background-color: var(--color-muted-forest);
+    color: var(--color-soft-white);
+    font-size: 0.75rem; /* text-xs */
+    border-radius: 9999px; /* rounded-full */
+    height: 1.25rem; /* h-5 */
+    width: 1.25rem; /* w-5 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1; /* leading-none */
+    pointer-events: none;
+}
+
+#cart-modal input[type="number"]::-webkit-inner-spin-button,
+#cart-modal input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+#cart-modal input[type="number"] {
+  -moz-appearance: textfield;
+}
